@@ -19,7 +19,8 @@ void main() {
     routes: {
       loginRoute: (context) => const LoginView(),
       registerRoute: (context) => const RegisterView(),
-      homeRoute: (context) => const HomePageView()
+      homeRoute: (context) => const HomePageView(),
+      verityEmailRoute: (context) => const VerifyEmailView(),
     },
   ));
 }
