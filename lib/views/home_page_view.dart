@@ -1,7 +1,8 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'dart:developer' as devtools show log;
 import 'package:flutterpractice/constants/routes.dart';
+import 'package:flutterpractice/services/auth/auth_service.dart';
+import '../enums/menu_action.dart';
 
 class HomePageView extends StatefulWidget {
   const HomePageView({super.key});
@@ -9,8 +10,6 @@ class HomePageView extends StatefulWidget {
   @override
   State<HomePageView> createState() => _HomePageViewState();
 }
-
-enum MenuAction { logout }
 
 class _HomePageViewState extends State<HomePageView> {
   @override
@@ -27,7 +26,7 @@ class _HomePageViewState extends State<HomePageView> {
                   final shouldLogout = await showLogOutDialog(context);
                   devtools.log(shouldLogout.toString());
                   if (shouldLogout) {
-                    FirebaseAuth.instance.signOut();
+                    AuthService.firebase().logOut();
                     Navigator.of(context)
                         .pushNamedAndRemoveUntil(loginRoute, (_) => false);
                   }
