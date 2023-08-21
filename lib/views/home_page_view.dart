@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'dart:developer' as devtools show log;
-import 'package:flutterpractice/constants/routes.dart';
-import 'package:flutterpractice/services/auth/auth_service.dart';
+import 'package:flutterpractice/services/auth/bloc/auth_bloc.dart';
+import 'package:flutterpractice/services/auth/bloc/auth_event.dart';
 import '../enums/menu_action.dart';
 
 class HomePageView extends StatefulWidget {
@@ -26,9 +27,9 @@ class _HomePageViewState extends State<HomePageView> {
                   final shouldLogout = await showLogOutDialog(context);
                   devtools.log(shouldLogout.toString());
                   if (shouldLogout) {
-                    AuthService.firebase().logOut();
-                    Navigator.of(context)
-                        .pushNamedAndRemoveUntil(loginRoute, (_) => false);
+                    context.read<AuthBloc>().add(
+                          const AuthEventLogOut(),
+                        );
                   }
               }
             },
