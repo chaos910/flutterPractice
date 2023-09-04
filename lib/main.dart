@@ -5,7 +5,7 @@ import 'package:flutterpractice/services/auth/bloc/auth_bloc.dart';
 import 'package:flutterpractice/services/auth/bloc/auth_event.dart';
 import 'package:flutterpractice/services/auth/bloc/auth_state.dart';
 import 'package:flutterpractice/services/auth/firebase_auth_provider.dart';
-import 'package:flutterpractice/util/show_error_dialog.dart';
+import 'package:flutterpractice/views/forgot_password_view.dart';
 import 'package:flutterpractice/views/home_page_view.dart';
 import 'package:flutterpractice/views/login_view.dart';
 import 'package:flutterpractice/views/register_view.dart';
@@ -36,6 +36,8 @@ class HomePage extends StatelessWidget {
       if (state.isLoading) {
         LoadingScreen().show(
             context: context, text: state.loadingText ?? "Please wait...");
+      } else {
+        LoadingScreen().hide();
       }
     }, builder: (context, state) {
       if (state is AuthStateLoggedIn) {
@@ -46,6 +48,8 @@ class HomePage extends StatelessWidget {
         return const LoginView();
       } else if (state is AuthStateRegistering) {
         return const RegisterView();
+      } else if (state is AuthStateForgotPassword) {
+        return const ForgotPasswordView();
       } else if (state is AuthStateGetUserName) {
         return const Scaffold(
           body: Text("We got your Username"),

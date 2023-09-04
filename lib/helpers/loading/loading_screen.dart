@@ -44,9 +44,9 @@ class LoadingScreen {
           child: Center(
             child: Container(
               constraints: BoxConstraints(
-                maxHeight: size.width * 0.8,
+                maxHeight: size.height * 0.8,
                 maxWidth: size.width * 0.8,
-                minHeight: size.width * 0.5,
+                minWidth: size.width * 0.5,
               ),
               decoration: BoxDecoration(
                   color: Colors.white,

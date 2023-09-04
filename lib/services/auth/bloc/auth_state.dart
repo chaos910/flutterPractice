@@ -1,3 +1,5 @@
+import 'dart:core';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutterpractice/services/auth/auth_user.dart';
 import 'package:equatable/equatable.dart';
@@ -10,6 +12,17 @@ abstract class AuthState {
   const AuthState({
     required this.isLoading,
     this.loadingText = "Please wait a moment",
+  });
+}
+
+class AuthStateForgotPassword extends AuthState {
+  final Exception? exception;
+  final bool hasSentEmail;
+
+  const AuthStateForgotPassword({
+    required this.exception,
+    required this.hasSentEmail,
+    required super.isLoading,
   });
 }
 
